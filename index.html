@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+
+  <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
+  
+  <title>Frontend Mentor | Fylo data storage component</title>
+
+  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+  <style>
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap');
+
+    :root {
+      /* Gradient */
+      --Gradient: hsl(6, 100%, 80%) to hsl(335, 100%, 65%);
+
+      /* Neutral colors */
+      --Pale-Blue: hsl(243, 100%, 93%);
+      --Grayish-Blue: hsl(229, 7%, 55%);
+      --Dark-Blue: hsl(228, 56%, 26%);
+      --Very-Dark-Blue: hsl(229, 57%, 11%);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      min-height: 100vh;
+      font-family: 'Raleway', sans-serif;
+      font-size: 14px;
+      background: url(images/bg-desktop.png);
+      background-color: var(--Very-Dark-Blue);
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-position: bottom -10vh left 0vh;
+      color: var(--Pale-Blue);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+
+    img, figure {
+      width: 100%;
+      height: 100%;
+    }
+
+    .container {
+      display: flex;
+      gap: 30px;
+      align-items: end;
+    }
+
+    .fylo {
+      width: 250px;
+      height: 150px;
+      background-color: var(--Dark-Blue);
+      display: flex;
+      flex-direction: column;
+      border-radius: 10px 50% 10px 10px;
+
+    }
+
+    .fylo-logo {
+      height: 25px;
+      width: 90px;
+      padding-top: 35px;
+      padding-left: 30px;
+    }
+
+    .options {
+      display: flex;
+      justify-content: flex-start;
+      padding-top: 20px;
+      gap: 10px;
+      padding-left: 30px;
+    }
+
+    .options img {
+      background-color: var(--Very-Dark-Blue);
+      padding: 10px;
+      border-radius: 5px;
+    }
+
+    .options .doc {
+      width: 15px;
+      height: 15px;
+    }
+
+    .doc:hover {
+      cursor: pointer;
+      scale: 1.2;
+      transition: 0.2s;
+    }
+
+    .options .fol {
+      width: 15px;
+      height: 15px;
+    }
+
+    .fol:hover {
+      cursor: pointer;
+      scale: 1.2;
+      transition: 0.2s;
+    }
+
+    .options .up {
+      width: 17px;
+      height: 15px;
+    }
+
+    .up:hover {
+      cursor: pointer;
+      scale: 1.2;
+      transition: 0.2s;
+    }
+
+    .storage {
+      background-color: var(--Dark-Blue);
+      padding: 30px;
+      border-radius: 10px;
+      width: 415px;
+      height: 65px;
+    }
+
+    .text {
+      padding-bottom: 10px;
+      font-size: 13px;
+    }
+
+    .progress-bar {
+      width: 400px;
+      height: 20px;
+      border-radius: 10px;
+      background-color: hsl(228, 71%, 19%);
+      display: flex;
+      align-items: center;
+      padding: 2px 3px 2px 5px;
+    }
+
+    .progress-bar .bar {
+      width: 75%;
+      height: 15px;
+      border-radius: 10px;
+      background:linear-gradient(90deg, hsl(6, 100%, 80%), hsl(335, 100%, 65%)) ;
+    }
+
+    .progress-bar::after {
+      content: '';
+      width: 12px;
+      height: 12px;
+      background-color: white;
+      border-radius: 50%;
+      position: absolute;
+      right: 34.7%;
+    }
+
+    .min-max {
+      display: flex;
+      justify-content: space-between;
+      padding-top: 5px;
+      align-items: center;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .storage-left {
+      background-color: white;
+      color: var(--Very-Dark-Blue);
+      padding: 10px 20px 15px 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 5px;
+      border-radius: 10px;
+      position: absolute;
+      left: 63%;
+      top: 35%;
+    }
+
+    .storage-left::after {
+      content:"";
+      display:inline-block;
+      border: 10px 0 0 ;
+      position: absolute;
+      bottom: -18px;
+      right: 0;
+      width: 0; 
+      height: 0; 
+      border-top: 25px solid transparent;
+      border-bottom: 25px solid transparent;
+      border-right: 25px solid white;
+    }
+
+    .storage-left h2 {
+      font-size: 32px;
+    }
+
+    .storage-left p {
+      font-size: 12px;
+      text-transform: uppercase;
+      color: var(--Grayish-Blue);
+      font-weight: 700;
+    }
+
+/* Footer */
+    .attribution { font-size: 11px; text-align: center; margin-top: 10px; }
+    .attribution a { color: white; }
+/* Footer */
+
+/* Responsiveness */
+
+/* Mobile */
+@media screen and (max-width: 431px) {
+  body {
+    max-width: 431px;
+    background-image: url(images/bg-mobile.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: top 0 left 0;
+  }
+  .container {
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .fylo {
+    margin: 0 auto;
+    width: 350px;
+    padding: 15px
+  }
+
+  .fylo-logo {
+    width: 40%;
+    height: 80%;
+  }
+
+  .options .doc {
+    width: 25px;
+    height: 25px;
+  }
+
+  .options .fol {
+    width: 25px;
+    height: 25px;
+  }
+
+  .options .up {
+    width: 27px;
+    height: 25px;
+  }
+
+  .storage {
+    margin: 0 auto;
+    height: 90px;
+    width: 315px;
+  }
+
+  .progress-bar {
+    width: 100%;
+  }
+
+  .progress-bar::after {
+    right: 32%
+  }
+
+  .storage-left {
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    margin-top: 140px;
+    width: 150px;
+  }
+
+  .storage-left h2 {
+    font-size: 42px;
+  }
+
+  .storage-left p {
+    padding-left: 5px;
+    padding-top: 5px;
+  }
+
+  .storage-left::after {
+    opacity: 0;
+  }
+
+  .attribution {
+    margin-top: 75px;
+  }
+
+}
+@media screen and (max-width: 391px) {
+  body {
+    max-width: 391px;
+    background-image: url(images/bg-mobile.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: top 0 left 0;
+  }
+  .container {
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    gap: 20px;
+    text-align: center;
+  }
+
+  .fylo {
+    margin: 0 auto;
+    width: 300px;
+    padding: 15px
+  }
+
+  .fylo-logo {
+    width: 40%;
+    height: 80%;
+  }
+
+  .options .doc {
+    width: 25px;
+    height: 25px;
+  }
+
+  .options .fol {
+    width: 25px;
+    height: 25px;
+  }
+
+  .options .up {
+    width: 27px;
+    height: 25px;
+  }
+
+  .storage {
+    margin: 0 auto;
+    height: 90px;
+    width: 265px;
+  }
+
+  .progress-bar {
+    width: 100%;
+  }
+
+  .progress-bar::after {
+    right: 32%
+  }
+
+  .storage-left {
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    margin-top: 130px;
+    width: 150px;
+  }
+
+  .storage-left h2 {
+    font-size: 42px;
+  }
+
+  .storage-left p {
+    padding-left: 5px;
+    padding-top: 5px;
+  }
+
+  .storage-left::after {
+    opacity: 0;
+  }
+
+  .attribution {
+    margin-top: 75px;
+  }
+
+}
+@media screen and (max-width: 351px) {
+  body {
+    max-width: 351px;
+    background-image: url(images/bg-mobile.png);
+    background-color: hsl(229, 72%, 16%);
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: left 0 top 0;
+  }
+  .container {
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    gap: 20px;
+    text-align: center;
+  }
+
+  .fylo {
+    margin: 0 auto;
+    width: 250px;
+    padding: 15px
+  }
+
+  .fylo-logo {
+    width: 40%;
+    height: 80%;
+  }
+
+  .options .doc {
+    width: 25px;
+    height: 25px;
+  }
+
+  .options .fol {
+    width: 25px;
+    height: 25px;
+  }
+
+  .options .up {
+    width: 27px;
+    height: 25px;
+  }
+
+  .storage {
+    margin: 0 auto;
+    height: 90px;
+    width: 215px;
+  }
+
+  .progress-bar {
+    width: 100%;
+  }
+
+  .progress-bar::after {
+    right: 32%
+  }
+
+  .storage-left {
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    margin-top: 130px;
+    width: 120px;
+  }
+
+  .storage-left h2 {
+    font-size: 36px;
+  }
+
+  .storage-left p {
+    padding-left: 5px;
+    padding-top: 5px;
+  }
+
+  .storage-left::after {
+    opacity: 0;
+  }
+
+  .attribution {
+    margin-top: 75px;
+  }
+
+}
+/* Mobile */
+
+  </style>
+</head>
+<body>
+
+<!-- Main Content -->
+  <main>
+    <div class="container">
+      <div class="fylo">
+        <figure class="fylo-logo">
+          <img src="images/logo.svg" alt="fylo logo">
+        </figure>
+        <figure class="options">
+          <img class="doc" src="/images/icon-document.svg" alt="document icon">
+          <img class="fol" src="images/icon-folder.svg" alt="folder icon">
+          <img class="up" src="images/icon-upload.svg" alt="upload icon">
+        </figure>
+      </div>
+      <div class="storage">
+        <div class="text">
+          <p>You've used <strong>815 GB</strong> of your storage</p>
+        </div>
+        <div class="progress-bar">
+          <div class="bar"></div>
+        </div>
+        <div class="min-max">
+          <p class="min">0 GB</p>
+          <p class="max">1000 GB</p>
+        </div>
+      </div>
+      <div class="storage-left">
+        <h2>185</h2>
+        <p>GB left</p>
+      </div>
+    </div>
+  </main>
+
+<!-- Footer -->
+  <footer>
+    <div class="attribution">
+      Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
+      Coded by <a href="https://www.frontendmentor.io/profile/Cairowisk">Cairo Garbelotto</a>.
+    </div>
+  </footer>
+</body>
+</html>
